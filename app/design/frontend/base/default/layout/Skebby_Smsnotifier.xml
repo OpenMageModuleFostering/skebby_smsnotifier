@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout>
+    <default translate="label" module="page">
+        <reference name="head">
+                <action method="addItem"><type>skin_js</type><name>js/skebby/validate.js</name></action>
+        </reference>
+    </default>
+</layout>

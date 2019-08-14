@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Skebby_Smsnotifier>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Skebby_Smsnotifier>
+    </modules>
+</config>

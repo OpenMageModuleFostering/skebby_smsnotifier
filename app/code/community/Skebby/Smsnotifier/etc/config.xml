@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    File:  app/code/community/Skebby/Smsnotifier/etc/config.xml
+
+    /**
+     * Skebby SMSNotifier API Module
+     *
+     * NOTICE OF LICENSE
+     *
+     * This source file is subject to the Open Software License (OSL 3.0)
+     * that is bundled with this package in the file LICENSE.txt.
+     * It is also available through the world-wide-web at this URL:
+     * http://opensource.org/licenses/osl-3.0.php
+     * If you did not receive a copy of the license and are unable to
+     * obtain it through the world-wide-web, please send an email
+     * to license@magentocommerce.com so we can send you a copy immediately.
+     *
+     * DISCLAIMER
+     *
+     * Do not edit or add to this file if you wish to upgrade Magento to newer
+     * versions in the future. If you wish to customize Magento for your
+     * needs please refer to http://www.magentocommerce.com for more information.
+     *
+     * Short Message Service (SMS) API
+     *
+     * @category   Skebby
+     * @package    SMSNotifier
+     * @copyright  Copyright (c) 2014 Skebby (http://skebby.com/)
+     * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+     * @author     Skebby <supporto@skebby.com>
+*/
+
+-->
+<config>
+
+    <modules>
+        <Skebby_Smsnotifier>
+            <version>1.0.3</version>
+        </Skebby_Smsnotifier>
+    </modules>
+
+	<admin>
+	    <routers>
+	        <adminhtml>
+	            <args>
+	                <modules>
+	                    <smsnotifier before="Mage_Adminhtml">Skebby_Smsnotifier_Adminhtml</smsnotifier>
+	                </modules>
+	            </args>
+	        </adminhtml>
+	        <smsnotifier>
+	            <use>admin</use>
+	            <args>
+	                <module>Skebby_Smsnotifier</module>
+	                <frontName>smsnotifier</frontName>
+	            </args>
+	        </smsnotifier>
+	    </routers>
+	</admin>
+
+	<frontend>
+		<routers>
+			<smsnotifier>
+				<use>standard</use>
+				<args>
+					<module>Skebby_Smsnotifier</module>
+					<frontname>smsnotifier</frontname>
+				</args>
+			</smsnotifier>
+		</routers>
+        <layout>
+            <updates>
+                <smsnotifier>
+                    <file>Skebby_Smsnotifier.xml</file>
+                </smsnotifier>
+            </updates>
+        </layout>
+	</frontend>
+
+   <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <smsnotifier>
+                                            <title>Skebby SMSNotifier</title>
+                                            <sort_order>101</sort_order>
+                                        </smsnotifier>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                        <smsnotifier>
+                            <title>Skebby SMSNotifier</title>
+                            <children>
+                                <smsnotifier translate="title" module="smsnotifier">
+                                    <title>SMSNotifier - SMS summary</title>
+                                </smsnotifier>
+                                <manual translate="title" module="smsnotifier">
+                                        <title>SMSNotifier - Send Bulk SMS</title>
+                                        <sort_order>10</sort_order>
+                                </manual>
+                            </children>
+                        </smsnotifier>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+
+        <menu>
+			<smsnotifier translate="title" module="smsnotifier">
+				<title>Skebby SMSNotifier</title>
+				<sort_order>500</sort_order>
+				<children>
+                    <smssummary translate="title" module="smsnotifier">
+                        <title>Summary</title>
+                        <sort_order>5</sort_order>
+                        <action>adminhtml/smsnotifier/index</action>
+                    </smssummary>
+                    <manual translate="title" module="smsnotifier">
+                        <title>Send Bulk SMS</title>
+                        <sort_order>10</sort_order>
+                        <action>smsnotifier/adminhtml_smsnotifier/new</action>
+                    </manual>
+					<settings translate="title" module="smsnotifier">
+						<title>Settings</title>
+						<sort_order>15</sort_order>
+						<action>adminhtml/system_config/edit/section/smsnotifier</action>
+					</settings>
+				</children>
+			</smsnotifier>
+       </menu>
+
+        <layout>
+            <updates>
+                <smsnotifier>
+                    <file>Skebby_Smsnotifier.xml</file>
+                </smsnotifier>
+            </updates>
+        </layout>
+
+        <translate>
+            <modules>
+                <Skebby_Smsnotifier>
+                    <files>
+                        <default>Skebby_Smsnotifier.csv</default>
+                    </files>
+                </Skebby_Smsnotifier>
+            </modules>
+        </translate>
+
+        <events>
+            <admin_system_config_changed_section_smsnotifier>
+                <observers>
+                    <smsnotifier_check_authorization_data>
+                        <class>Skebby_Smsnotifier_Model_Observer</class>
+                        <method>checkAuthorizationData</method>
+                    </smsnotifier_check_authorization_data>
+                </observers>
+            </admin_system_config_changed_section_smsnotifier>
+            <admin_session_user_login_success>
+                <observers>
+                    <smsnotifier_check_limits>
+                        <class>Skebby_Smsnotifier_Model_Observer</class>
+                        <method>checkCreditLimit</method>
+                    </smsnotifier_check_limits>
+                </observers>
+            </admin_session_user_login_success>
+        </events>
+
+
+    </adminhtml>
+
+
+    <global>
+        <models>
+            <smsnotifier>
+                <class>Skebby_Smsnotifier_Model</class>
+                <resourceModel>smsnotifier_resource</resourceModel>
+            </smsnotifier>
+             <smsnotifier_resource>
+                <class>Skebby_Smsnotifier_Model_Resource</class>
+                <entities>
+                    <skebby_smsnotifier>
+                        <table>skebby_smsnotifier</table>
+                    </skebby_smsnotifier>
+                </entities>
+            </smsnotifier_resource>
+            <smsnotifier_adminhtml>
+            	<class>Skebby_Smsnotifier_Adminhtml_Model</class>
+        	</smsnotifier_adminhtml>
+        </models>
+        <helpers>
+            <smsnotifier>
+                <class>Skebby_Smsnotifier_Helper</class>
+            </smsnotifier>
+        </helpers>
+        <blocks>
+            <smsnotifier>
+                <class>Skebby_Smsnotifier_Block</class>
+            </smsnotifier>
+        </blocks>
+        <resources>
+            <smsnotifier_setup>
+                <setup>
+                    <module>Skebby_Smsnotifier</module>
+                </setup>
+            </smsnotifier_setup>
+        </resources>
+        <events>
+            <sales_order_status_history_save_before>
+                <observers>
+                    <order_new_status>
+                        <class>Skebby_Smsnotifier_Model_Observer</class>
+                        <method>orderStatusHistorySave</method>
+                    </order_new_status>
+                </observers>
+            </sales_order_status_history_save_before>
+        </events>
+    </global>
+
+    <default>
+        <smsnotifier>
+            <main_conf>
+                <credit_alert_limit>0</credit_alert_limit>
+            </main_conf>
+        </smsnotifier>
+    </default>
+
+    <crontab>
+        <jobs>
+            <smsnotifier_getreports>
+                <schedule>
+                    <cron_expr>0,30 * * * *</cron_expr>
+                </schedule>
+                <run><model>smsnotifier/cron::getDelieveryReport</model></run>
+            </smsnotifier_getreports>
+        </jobs>
+    </crontab>
+
+</config>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.1">
+    <default>
+        <reference name="head">
+            <action method="addJs"><script>skebbySmsnotifier/smsnotifiercounter.js</script></action>
+            <action method="addCss"><name>css/smsnotifier/skin.css</name></action>
+        </reference>
+    </default>
+    <adminhtml_smsnotifier_index>
+        <reference name="content">
+            <block type="smsnotifier/adminhtml_smsnotifier" name="smsnotifier" />
+        </reference>
+    </adminhtml_smsnotifier_index>
+    <smsnotifier_adminhtml_smsnotifier_index>
+        <reference name="content">
+            <block type="smsnotifier/adminhtml_smsnotifier" name="smsnotifier" />
+        </reference>
+    </smsnotifier_adminhtml_smsnotifier_index>
+</layout>

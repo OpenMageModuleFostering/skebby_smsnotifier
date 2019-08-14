@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Skebby SMSNotifier API
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * Short Message Service (SMS) API
+ *
+ * @category   Skebby
+ * @package    SmsnotifierApi
+ * @copyright  Copyright (c) 2014 Skebby (http://skebby.com/)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     Skebby <supporto@skebby.com>
+*/
+
+-->
+
+<config>
+  <tabs>
+      <skebby translate="label">
+          <label>SKEBBY</label>
+          <sort_order>1</sort_order>
+      </skebby>
+  </tabs>
+  <sections>
+    <smsnotifier translate="label" module="smsnotifier">
+      <label><![CDATA[<span class="skebbyadmin-menu">Skebby SMSNotifier</span>]]></label>
+      <tab>skebby</tab>
+      <frontend_type>text</frontend_type>
+      <sort_order>0</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+        <groups>
+
+            <branding_header translate="label" module="smsnotifier">
+                <frontend_model>smsnotifier/adminhtml_system_config_fieldset_branding</frontend_model>
+                <sort_order>0</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+            </branding_header>
+
+            <main_conf translate="label">
+                <label>Smsnotifier - Main Configuration</label>
+                <frontend_type>text</frontend_type>
+                <sort_order>1</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <expanded>1</expanded>
+                <fields>
+                    <active translate="label">
+                        <label>Enabled</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>1</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </active>
+
+                   <apilogin translate="label">
+                        <label>API Login</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>2</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                   </apilogin>
+
+                   <apipassword translate="label">
+                        <label>API Password</label>
+                        <frontend_type>obscure</frontend_type>
+                        <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                        <sort_order>3</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                   </apipassword>
+
+                   <choosesender translate="label">
+                   		<label>Choose the Sender string (Only for Classic and Classic+ SMSs)</label>
+                   		<frontend_type>select</frontend_type>
+                         <source_model>smsnotifier_adminhtml/system_config_source_choosesender</source_model>
+                         <sort_order>4</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                   </choosesender>
+
+                   <sendernumber translate="label">
+                   		<label>Sender Number</label>
+                   		<frontend_type>text</frontend_type>
+                        <sort_order>5</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                   </sendernumber>
+
+                   <storename translate="label">
+                        <label>Store name</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>6</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <validate>validate-length maximum-length-11</validate>
+                   </storename>
+
+                   <message_type translate="label">
+                         <label>Select the type of message you want to send</label>
+                         <frontend_type>select</frontend_type>
+                         <source_model>smsnotifier_adminhtml/system_config_source_messagetype</source_model>
+                         <sort_order>7</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                   </message_type>
+
+                   <charset translate="label">
+                   		<label>Charset</label>
+                   		<frontend_type>select</frontend_type>
+	                    <source_model>smsnotifier_adminhtml/system_config_source_charset</source_model>
+	                    <sort_order>8</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>
+                   </charset>
+
+                   <encodingscheme translate="label">
+                   		<label>Encoding Scheme</label>
+                   		<frontend_type>select</frontend_type>
+	                    <source_model>smsnotifier_adminhtml/system_config_source_encodingscheme</source_model>
+	                    <sort_order>9</sort_order>
+	                    <show_in_default>1</show_in_default>
+	                    <show_in_website>1</show_in_website>
+	                    <show_in_store>1</show_in_store>
+                   </encodingscheme>
+
+                   <!--<country_prefix translate="label">
+                        <label>Country prefix</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>20</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <validate>validate-length maximum-length-5</validate>
+                   </country_prefix>-->
+
+                   <credit_alert_limit translate="label comment">
+                        <label>Notify if my Smsnotifier account credits is below:</label>
+                        <comment>0 - turn off/no alert</comment>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>30</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <validate>validate-zero-or-greater</validate>
+                   </credit_alert_limit>
+                </fields>
+
+            </main_conf>
+            <classicplus translate="label" module="smsnotifier">
+            	 <label>How to get Classic+ Reports</label>
+                 <frontend_type>text</frontend_type>
+                 <comment><![CDATA[In order to get the delivery reports from classic+ messages, you need to set a webhook page inside your Skebby profile.<br>Here's the following steps:<ul><li>Log in on your <a href="http://secure.skebby.com/user/login/business/">Skebby Profile</a></li><li>Go to Settings > Send SMS</li><li>Click on Delivery Report and set up the sending protocol (POST) and the destination URL for the reports (yourmagentosite.com/index.php/smsnotifier/index/notify).</li><li>Click on "Save" and your site is ready to receive the reports from Skebby</li></ul>]]></comment>
+                 <sort_order>30</sort_order>
+                 <show_in_default>1</show_in_default>
+                 <show_in_website>1</show_in_website>
+                 <show_in_store>1</show_in_store>
+            </classicplus>
+            <templates translate="label comment" module="smsnotifier">
+                 <label>Message templates</label>
+                 <frontend_type>text</frontend_type>
+                 <comment><![CDATA[<div style="padding:10px;background-color:#fff;border:1px solid #CCC;margin-bottom:7px;">In each template you can use dynamic data. You can add <br />- {NAME} - customer name <br />- {ORDERSTATUS} - status of an order <br />- {ORDERNUMBER} - order number<br />- {TRACKINGNUMBER} - tracking number (if exists)<br />- {STORENAME} - the name of the store<br />Example: Your order #{ORDERNUMBER} waits for a fee. Regards {STORENAME}<br />SMS Content: Your order #100000012 waits for a fee. Regards skebby.com</div><div id="smsnotifierCounterContainer">Message length: <span id="smsnotifierCounter">0</span> chars.<br /> <span id="smsnotifierTooLongAlert"> Warning: The template can be to long for 1 SMS. Please shorten the message or allow to send long messages in Main Configuration.</span></div><br />]]></comment>
+                 <sort_order>100</sort_order>
+                 <show_in_default>1</show_in_default>
+                 <show_in_website>1</show_in_website>
+                 <show_in_store>1</show_in_store>
+                 <fields>
+
+                    <status_pending_active translate="label">
+                         <label>Send SMS after status changed to "Pending Payment"</label>
+                         <frontend_type>select</frontend_type>
+                         <source_model>adminhtml/system_config_source_yesno</source_model>
+                         <sort_order>3</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                    </status_pending_active>
+                    <status_pending translate="label">
+                         <label>Template</label>
+                         <frontend_type>textarea</frontend_type>
+                         <sort_order>4</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                         <depends><status_pending_active>1</status_pending_active></depends>
+                    </status_pending>
+
+                    <status_holded_active translate="label">
+                         <label>Send SMS after status changed to "On Hold"</label>
+                         <frontend_type>select</frontend_type>
+                         <source_model>adminhtml/system_config_source_yesno</source_model>
+                         <sort_order>5</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                    </status_holded_active>
+                    <status_holded translate="label">
+                         <label>Template</label>
+                         <frontend_type>textarea</frontend_type>
+                         <sort_order>6</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                         <depends><status_holded_active>1</status_holded_active></depends>
+                    </status_holded>
+
+                    <status_processing_active translate="label">
+                         <label>Send SMS after status changed to "Processing"</label>
+                         <frontend_type>select</frontend_type>
+                         <source_model>adminhtml/system_config_source_yesno</source_model>
+                         <sort_order>7</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                    </status_processing_active>
+                    <status_processing translate="label">
+                         <label>Template</label>
+                         <frontend_type>textarea</frontend_type>
+                         <sort_order>8</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                         <depends><status_processing_active>1</status_processing_active></depends>
+                    </status_processing>
+
+                    <status_canceled_active translate="label">
+                         <label>Send SMS after status changed to "Canceled"</label>
+                         <frontend_type>select</frontend_type>
+                         <source_model>adminhtml/system_config_source_yesno</source_model>
+                         <sort_order>9</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                    </status_canceled_active>
+                    <status_canceled translate="label">
+                         <label>Template</label>
+                         <frontend_type>textarea</frontend_type>
+                         <sort_order>10</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                         <depends><status_canceled_active>1</status_canceled_active></depends>
+                    </status_canceled>
+
+                    <status_complete_active translate="label">
+                         <label>Send SMS after status changed to "Complete"</label>
+                         <frontend_type>select</frontend_type>
+                         <source_model>adminhtml/system_config_source_yesno</source_model>
+                         <sort_order>11</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                    </status_complete_active>
+                    <status_complete translate="label">
+                         <label>Template</label>
+                         <frontend_type>textarea</frontend_type>
+                         <sort_order>12</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                         <depends><status_complete_active>1</status_complete_active></depends>
+                    </status_complete>
+
+                    <status_closed_active translate="label">
+                         <label>Send SMS after status changed to "Closed"</label>
+                         <frontend_type>select</frontend_type>
+                         <source_model>adminhtml/system_config_source_yesno</source_model>
+                         <sort_order>13</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                    </status_closed_active>
+                    <status_closed translate="label">
+                         <label>Template</label>
+                         <frontend_type>textarea</frontend_type>
+                         <sort_order>14</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                         <depends><status_closed_active>1</status_closed_active></depends>
+                    </status_closed>
+                 </fields>
+             </templates>
+
+             <contact translate="label"  module="smsnotifier">
+                 <label>Contact Us</label>
+                 <frontend_type>text</frontend_type>
+                 <sort_order>200</sort_order>
+                 <show_in_default>1</show_in_default>
+                 <show_in_website>1</show_in_website>
+                 <show_in_store>1</show_in_store>
+                 <fields>
+                     <contactbutton translate="label">
+                         <label>Contact Us</label>
+                         <frontend_model>smsnotifier/buttons_contact</frontend_model>
+                         <sort_order>101</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                     </contactbutton>
+                 </fields>
+             </contact>
+
+             <newaccount translate="label comment"  module="smsnotifier">
+                 <label>Sign up</label>
+                 <comment><![CDATA[<p><strong>How to register and start using the Plugin?</strong><br /><br />In order to use Skebby SMSNotifier it's necessary to register over the Skebby platform (<a href="http://www.skebby.com/" target="_blank">www.skebby.com</a>). This allows you to get your login credentials and password for the plugin.</p>]]></comment>
+                 <frontend_type>text</frontend_type>
+                 <sort_order>210</sort_order>
+                 <show_in_default>1</show_in_default>
+                 <show_in_website>1</show_in_website>
+                 <show_in_store>1</show_in_store>
+                 <fields>
+                     <newaccountbutton translate="label">
+                         <label>Sign up</label>
+                         <frontend_model>smsnotifier/buttons_newAccount</frontend_model>
+                         <sort_order>101</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>
+                     </newaccountbutton>
+                 </fields>
+             </newaccount>
+        </groups>
+    </smsnotifier>
+  </sections>
+</config>
