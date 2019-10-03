@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/Skebby_Smsnotifier",
+    "name": "openmage-module-fostering\/skebby_smsnotifier",
     "type": "magento-module",
-    "license": "Open-Software-License-(OSL-3.0)",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "Skebby SMS Notifier gives you the power of SMS to improve your commerce.",
     "authors": [
